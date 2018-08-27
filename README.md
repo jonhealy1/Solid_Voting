@@ -7,13 +7,6 @@ __Sources:__ https://truffleframework.com/tutorials/pet-shop /and/ http://www.da
 __Rinkeby Network:__ This contract is deployed on the Rinkeby Network at address: __0x4f60cfddec702b21e204800725424dd6bc09a4cc__
 
 
-- Once you choose to either vote or add a candidate you will have to go to MetaMask and submit the transaction. 
-- Sometimes the results don't immediately show and the page will need to be refreshed.
-- At one point this contract had a lot more functionality but because I have almost zero ability with JavaScript I was not able to include these things:
-  1. I wanted to give Users the option to vote on issues as well as candidates.
-  2. Adding an issue or candidate was supposed to cost Ether above the transaction fees.
-  3. I wanted to have Voters answer general knowledge questions about either the candidates or the issues in order to be delegated votes.
-
 __Instructions:__ 
 
 1. Install Truffle: __npm install -g truffle__

@@ -1,8 +1,14 @@
 
 pragma solidity ^0.4.24;
 
-contract Election {
+//open zeppelin used for circuit breaker pattern
+//import "/Users/Physics/Code/ethElectionsOZ/node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "/Users/Physics/Code/ethElectionsOZ/node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
+import "/Users/Physics/Code/ethElectionsOZ/node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
+
+contract Election is Pausable {
     
+    //using SafeMath for uint;
     //constructor store/read candidate
     struct Candidate {
         uint id;
@@ -10,7 +16,7 @@ contract Election {
         uint voteCount;
     }
 
-    /* store the accounts that have voted with this mapping 
+    /* we store the accounts that have voted with this mapping 
     from a Voter's address to a boolean indicating true if a Voter has voted
     - each account can vote 3 times: a first place vote counts for 5 votes, 
     a second place vote: 3, and a third place vote: 1. */
@@ -41,14 +47,15 @@ contract Election {
     and then increase the candidatesCount variable. It then creates
     a new Candidate struct initialized with 0 votes and adds it to
     the candidates mapping */
-    function addCandidate(string _name) public {
-        candidatesCount ++;
+    function addCandidate(string _name) public whenNotPaused {
+        //require(candidatesCount <= 64, "Maximum of 64 Candidates has been reached");
+        candidatesCount += 1;
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
     }
 
     /* the vote function handles a Voter's first choice which
     is worth a total of five votes */
-    function vote(uint _candidateId) public {
+    function vote(uint _candidateId) public whenNotPaused {
         //require that a voter hasn't voted before
         require(!voters[msg.sender], "User already voted");
 
@@ -64,9 +71,10 @@ contract Election {
         //trigger voted event
         emit votedEvent(_candidateId); 
     }
+
     /* the vote2 function handles a Voter's second choice which
     is worth a total of three votes */
-    function vote2(uint _candidateId) public {
+    function vote2(uint _candidateId) public whenNotPaused {
         //require voter hasn't voted before
         require(!voters2[msg.sender], "User already voted");
 
@@ -82,9 +90,10 @@ contract Election {
         //trigger voted event
         emit votedEvent(_candidateId); 
     }
+    
     /* the vote function handles a Voter's third choice which
     is worth a total of one vote */
-    function vote3(uint _candidateId) public {
+    function vote3(uint _candidateId) public whenNotPaused {
         //require voter hasn't voted before
         require(!voters3[msg.sender], "User already voted");
 

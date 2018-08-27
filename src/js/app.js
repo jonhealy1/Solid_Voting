@@ -1,5 +1,3 @@
-
-
 App = {
   web3Provider: null,
   contracts: {},
@@ -11,9 +9,7 @@ App = {
     return App.initWeb3();
   },
 
-  
-
-  initWeb3: function() {
+initWeb3: function() {
     // TODO: refactor conditional
     if (typeof web3 !== 'undefined') {
       // If a web3 instance is already provided by Meta Mask.

@@ -15,14 +15,14 @@ __Instructions:__
 3. Download this project
 4. Navigate to project folder with terminal
 5. Install project dependencies: __npm install__
-6. Compile: __truffle compile__
-7. Start Ganache: __ganache-cli__
-8. Copy Mnemonic shown in ganache: ex. spawn general accident claim pattern immune muscle lube magnet almost display artist
-9. Open MetaMask in __Brave__ or Google Chrome
-10. Go to network: localhost:8545 in MetaMask (this can be changed in settings if it shows 7545 or something else)
-11. In MetaMask select __"restore from seed phrase"__ 
-12. Paste in the Mnemonic from Ganache and create a password
-13. In a new terminal window: __truffle migrate --reset__
+6. Start Ganache: __ganache-cli__
+7. Copy Mnemonic shown in ganache: ex. spawn general accident claim pattern immune muscle lube magnet almost display artist
+8. Open MetaMask in __Brave__ or Google Chrome
+9. Go to network: localhost:8545 in MetaMask (this can be changed in settings if it shows 7545 or something else)
+10. In MetaMask select __"restore from seed phrase"__ 
+11. Paste in the Mnemonic from Ganache and create a password
+12. Compile - In a new terminal window in the project folder: __truffle compile__
+13. Migrate: __truffle migrate --reset__
 14. Open up a browser window with this project running: __npm run dev__
 
 

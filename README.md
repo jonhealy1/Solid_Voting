@@ -1,8 +1,11 @@
-# ethElections
+# Solid Voting
+
+This is a very simple voting application. Addresses are given three choices to allocate. Their first choice is worth 5 votes, the second, 3 votes, and the third is worth 1. All 3 choices can be given to one Candidate. A User can also add a Candidate but the number of Candidates is limited to 8.
 
 __Sources:__ https://truffleframework.com/tutorials/pet-shop /and/ http://www.dappuniversity.com/
 
-__Rinkeby Network:__ This contract is deployed on the Rinkeby Network at address: __0x81D2F01fd7d59Aa5675283A5e52446A773134a0E__
+__Rinkeby Network:__ This contract is deployed on the Rinkeby Network at address: __0x4f60cfddec702b21e204800725424dd6bc09a4cc__
+
 
 __Instructions:__ 
 
@@ -28,6 +31,12 @@ __Instructions:__
   1. I wanted to give Users the option to vote on issues as well as candidates.
   2. Adding an issue or candidate was supposed to cost Ether above the transaction fees.
   3. I wanted to have Voters answer general knowledge questions about either the candidates or the issues in order to be delegated votes.
+
+__Known Issues:__ When adding a candidate, the page may not refresh and a new page would need to opened with the same address to see the changes. 
+
+__Libraries:__ SafeMath and Pausable are implemented courtesy of OpenZeppelin.
+
+__Circuit-Breaker:__ Using Pausable the Owner of a contract can pause both the voting functions and the add Candidate functions.
 
 __Testing:__ Explanations for the testing logic is provided with the code in the file /test/election.js
 

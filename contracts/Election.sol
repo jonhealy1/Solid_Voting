@@ -4,7 +4,6 @@ pragma solidity ^0.4.24;
 //open zeppelin used for circuit breaker pattern
 //import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
-//import "../contracts/SafeMath.sol";
 import "../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 
 contract Election is Pausable {
@@ -50,7 +49,6 @@ contract Election is Pausable {
     the candidates mapping */
     function addCandidate(string _name) public whenNotPaused {
         require(candidatesCount <= 7, "Maximum of 8 Candidates has been reached");
-        //candidatesCount += 1;
         candidatesCount = candidatesCount.add(1);
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
     }
@@ -68,8 +66,6 @@ contract Election is Pausable {
         voters[msg.sender] = true; 
        
         //update candidate vote count by five votes
-        //candidates[_candidateId].voteCount += 5;
-
         candidates[_candidateId].voteCount = candidates[_candidateId].voteCount.add(5);
 
         //trigger voted event
@@ -89,9 +85,8 @@ contract Election is Pausable {
         voters2[msg.sender] = true; 
        
         //update candidate vote count
-       // candidates[_candidateId].voteCount += 3;
-        //candidates[_candidateId].voteCount.add(3);
         candidates[_candidateId].voteCount = candidates[_candidateId].voteCount.add(3);
+        
         //trigger voted event
         emit votedEvent(_candidateId); 
     }
@@ -109,9 +104,8 @@ contract Election is Pausable {
         voters3[msg.sender] = true; 
        
         //update candidate vote count
-        //candidates[_candidateId].voteCount += 1;
-        //candidates[_candidateId].voteCount.add(1);
         candidates[_candidateId].voteCount = candidates[_candidateId].voteCount.add(1);
+        
         //trigger voted event
         emit votedEvent(_candidateId); 
     }

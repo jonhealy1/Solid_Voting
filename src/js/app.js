@@ -9,8 +9,8 @@ App = {
     return App.initWeb3();
   },
 
-initWeb3: function() {
-    // TODO: refactor conditional
+  // Initialize web3
+  initWeb3: function() {
     if (typeof web3 !== 'undefined') {
       // If a web3 instance is already provided by Meta Mask.
       App.web3Provider = web3.currentProvider;
@@ -23,6 +23,7 @@ initWeb3: function() {
     return App.initContract();
   },
 
+  // Initialize contract: ELection.sol 
   initContract: function() {
     $.getJSON("Election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
@@ -53,6 +54,7 @@ initWeb3: function() {
     });
   },
 
+  // Render our web page
   render: function() {
     var electionInstance;
     var loader = $("#loader");
@@ -89,10 +91,7 @@ initWeb3: function() {
       var candidatesAdd = $('#candidatesAdd');
       candidatesAdd.empty();
 
-      
-
-
- 
+      //display
       for (var i = 1; i <= candidatesCount; i++) {
         electionInstance.candidates(i).then(function(candidate) {
           var id = candidate[0];
@@ -102,23 +101,21 @@ initWeb3: function() {
           // Render candidate Result
           var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
           candidatesResults.append(candidateTemplate);
-         // issuesResults.append(candidateTemplate);
           // Render candidate ballot option
           var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-         // issuesSelect.append(candidateOption);
           content.show(); //put this here for testing
 
           candidatesSelect.append(candidateOption);
           candidatesSelect2.append(candidateOption);
           candidatesSelect3.append(candidateOption);
         });
-
-        
       }
+      // Load contract data 1
       return electionInstance.voters(App.account);
     }).then(function(hasVoted) {
       // Do not allow a user to vote
       if(hasVoted) {
+        // Hide option to cast vote 1
         $('#candidatesSelect').hide();
         $('#vote1').hide();
       }
@@ -136,6 +133,7 @@ initWeb3: function() {
     }).then(function(hasVoted2) {
       // Do not allow a user to vote
       if(hasVoted2) {
+        // Hide option to cast vote 2
         $('#candidatesSelect2').hide();
         $('#vote2').hide();
       }
@@ -152,6 +150,7 @@ initWeb3: function() {
     }).then(function(hasVoted3) {
       // Do not allow a user to vote
       if(hasVoted3) {
+        // Hide option to cast vote 3
         $('#candidatesSelect3').hide();
         $('#vote3').hide();
       }
@@ -162,10 +161,9 @@ initWeb3: function() {
     });
   },
 
+  // Call function for 1st. choice
   castVote: function() {
     var candidateId = $('#candidatesSelect').val();
-    //var candidateId2 = $('#candidatesSelect2').val();
-    //var candidateId3 = $('#candidatesSelect3').val();
     App.contracts.Election.deployed().then(function(instance) {
       return instance.vote(candidateId, { from: App.account });
     }).then(function(result) {
@@ -177,6 +175,7 @@ initWeb3: function() {
     });
   },
 
+  // Call function for 2nd. choice
   castVote2: function() {
     var candidateId = $('#candidatesSelect2').val();
     App.contracts.Election.deployed().then(function(instance) {
@@ -190,6 +189,7 @@ initWeb3: function() {
     });
   },
 
+  // Call function for 3rd.. choice
   castVote3: function() {
     var candidateId = $('#candidatesSelect3').val();
     App.contracts.Election.deployed().then(function(instance) {
@@ -203,6 +203,7 @@ initWeb3: function() {
     });
   },
 
+  // Call function for adding a Candidate
   addCandidate: function() {
     var candidateId = $('#candidatesAdd').val();
     App.contracts.Election.deployed().then(function(instance) {

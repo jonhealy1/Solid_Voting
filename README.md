@@ -38,6 +38,8 @@ __Libraries:__ SafeMath and Pausable are implemented courtesy of OpenZeppelin.
 
 __Circuit-Breaker:__ Using Pausable the Owner of a contract can pause both the voting functions and the add Candidate functions.
 
+__Development-Server:__ Uses lite-server
+
 __Testing:__ Explanations for the testing logic is provided with the code in the file /test/election.js
 
 *expected output:* <br />

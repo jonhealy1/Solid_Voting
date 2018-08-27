@@ -13,6 +13,8 @@ I chose to allow a Voter to have three voting options. A first place choice wort
 In this application I have imported both SafeMath and Pausable from OpenZeppelin. SafeMath is for integer overflow/ underflow and Pausable is to allow the contract Owner to pause the contract in the case of an emergency. This is 'Circuit Breaker' design. 
 
 I have chosen to make all the functions in my application public. I am using Bootstrap as that is what I have some experience with. The testing is done in the file, 'election.js' with the Mocha testing framework and the Chai assertion library which are both bundled in Truffle. I also use numerous Require statements in my contract to make sure that it operates Bug-free.
+
+I would like to continue to work on this application in the future.
   
 
 
